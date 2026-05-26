@@ -73,3 +73,64 @@ console.log(a2); // map 원본에 영향을 안미침. - 복사본을 만든다 
 console.log(a2.filter((v) => v % 2 == 0));
 console.log(a2.filter((v) => v % 3 == 0));
 console.log(a2.filter((_, i) => i !== 0 && i % 3 == 0));
+
+const aa = [];
+for (const v of a2) {
+  if (v % 3 == 0) {
+    aa.push(v);
+  }
+}
+// 별도의 변수/상수로 새로운 리턴값을 지정해줘야함 (scope, 구현상의 편의 등...)
+
+// Reduce -> 배열을 1개의 값으로 변환.
+const a4 = [1, 10, 5, 4, 7];
+// 1. 숫자 연산
+// forEach, map, filter => v, i, a / sort -> e1, e2
+// fn(prev, cur, i, arr)
+// fn(acc, cur)
+
+let sum = 0;
+for (const v of a4) {
+  sum += v;
+}
+console.log(sum);
+// const sum2 = a4.reduce((prev, cur) => prev + cur);
+const sum2 = a4.reduce((prev, cur) => {
+  // 최초의 직전값(prev)은 0번째 인덱스. -> 1번째 인덱스(cur) 연산
+  console.log("prev", prev, "cur", cur);
+  return prev + cur; // 다음 회차의 prev
+});
+console.log(sum2);
+// lodash - 요새는 많이 안쓰지만 내장되어있지 않은 여러 기능들을 담은 라이브러리.
+const prod = a4.reduce((prev, cur) => {
+  // 최초의 직전값(prev)은 0번째 인덱스. -> 1번째 인덱스(cur) 연산
+  console.log("prev", prev, "cur", cur);
+  return prev * cur; // 다음 회차의 prev
+});
+console.log(prod);
+console.log(
+  a4.reduce((prev, cur) => {
+    // 최초의 직전값(prev)은 0번째 인덱스. -> 1번째 인덱스(cur) 연산
+    console.log("prev", prev, "cur", cur);
+    return prev + cur; // 다음 회차의 prev
+  }, 100),
+);
+// 2. 객체, 배열
+// reduce(fn(prev, cur, i, a), [초기값])
+// reduce는 배열을 '한 개의 값'으로 변환
+console.log(
+  a4.reduce((prev, cur) => {
+    // 최초의 직전값(prev)은 0번째 인덱스. -> 1번째 인덱스(cur) 연산
+    console.log("prev", prev, "cur", cur);
+    prev.push(cur ** 2);
+    return prev;
+  }, []),
+);
+console.log(
+  a4.reduce((prev, cur) => {
+    // 최초의 직전값(prev)은 0번째 인덱스. -> 1번째 인덱스(cur) 연산
+    console.log("prev", prev, "cur", cur);
+    if (cur % 2 == 0) prev.push(cur); // 한줄이면 블록 생략 가능 (블록이 한 줄의 표현(expression)을 확장하는 개념)
+    return prev;
+  }, []),
+);
