@@ -134,3 +134,16 @@ console.log(
     return prev;
   }, []),
 );
+
+// 체이닝
+const d = ["Bob", "alice", "jAin", "Tom"];
+// 알파벳 a나 b로 시작하는 단어중에 3글자 이하인 것을 찾으시오.
+console.log(d.filter((v) => (v[0] === "a" || v[0] === "b") && v.length <= 3));
+
+console.log(
+  d
+    .map((v) => v.toLowerCase()) // 소문자로 일괄 요소를 바꾸고
+    .filter((v) => v[0] === "a" || v[0] === "b")
+    .filter((v) => v.length <= 3),
+  // 체이닝
+);
