@@ -67,3 +67,9 @@ console.log(a2.map((v, i) => (i % 2 == 0 ? v ** 2 : 0)));
 // [ 1, 0, 25, 0, 361 ]
 console.log(a2.map((v, i) => (!(i % 2) ? v ** 2 : 0))); // 숏 코딩.
 // 배열 -> for문. 압축되지 않은 표현식 -> (함수화) -> 배열 내장 메서드 (고차함수) + 고급 연산자들을 사용해서 표현식 압축
+console.log(a2); // map 원본에 영향을 안미침. - 복사본을 만든다 [...arr] <- fn으로 하나씩 작업을 한 셈.
+
+// filter - map이랑 비슷한데 / 결과가 무조건 true/false. -> true인 것들만 남겨서 신규 배열을 만든다
+console.log(a2.filter((v) => v % 2 == 0));
+console.log(a2.filter((v) => v % 3 == 0));
+console.log(a2.filter((_, i) => i !== 0 && i % 3 == 0));
